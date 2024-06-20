@@ -1,54 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
+<section class="producto-imagenes">
+    <div class="producto-imagenes__principal">
+        <img class="producto-imagenes__imagen-principal" id="imagen-principal" src="" alt="Producto principal">
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMARTACHITO - Detalles de producto</title>
-    <link rel="stylesheet" href="../css/producto-detalles.css">
-    <script type="module" src="../js/header-footer-components.js"></script>
-    <script defer src="../js/producto-detalles.js"></script>
-</head>
+    <div class="producto-imagenes__miniatura" id="imagenes-secundariaimagenes-secundariass">
+            <!-- aquí se cargarán las imágenes secundarias --> 
+    </div>
+</section>
 
-<body>
-    <!-- aquí va el header -->
-    <div id="header-placeholder"></div>
+<section class="producto-detalles">
+    <h1 class="producto-detalles__titulo" id="titulo-producto">
+        Titulo del producto
+    </h1>
+    <p class="producto-detalles__descripcion" id="descripcion-producto">Descripción del producto</p>
+    <p class="producto-detalles__medidas-titulo"><strong>Medidas:</strong></p>
+    <ul class="producto-detalles__medidas" id="medidas-producto">
+        <!-- Medidas se cargarán aquí -->
+    </ul>
+    <p class="producto-detalles__contenedores-titulo"><strong>Contenedores:</strong></p>
+    <div class="producto-detalles__contenedores" id="contenedores-producto">
+        <!-- iconos de contenedores se cargarán aquí --> 
+    </div>
+    <p class="producto-detalles_precio" id="precio-producto">s/. 0.00</p>
+    <button class="producto-detalles_btn-añadir-carrito">Añadir a carrito</button>
+    <p href="#" class="producto-detalles__ver-mas">Ver más</>
+</section>
 
-    <main class="pagina-producto">
-        <section class="producto-imagenes">
-            <div class="producto-imagenes__principal">
-                <img class="producto-imagenes__imagen-principal" id="imagen-principal" src="" alt="Producto principal">
-            </div>
-
-            <div class="producto-imagenes__miniatura" id="imagenes-secundariaimagenes-secundariass">
-                    <!-- aquí se cargarán las imágenes secundarias --> 
-            </div>
-        </section>
-	
-        <section class="producto-detalles">
-            <h1 class="producto-detalles__titulo" id="titulo-producto">
-                Titulo del producto
-            </h1>
-            <p class="producto-detalles__descripcion" id="descripcion-producto">Descripción del producto</p>
-            <p class="producto-detalles__medidas-titulo"><strong>Medidas:</strong></p>
-            <ul class="producto-detalles__medidas" id="medidas-producto">
-                <!-- Medidas se cargarán aquí -->
-            </ul>
-            <p class="producto-detalles__contenedores-titulo"><strong>Contenedores:</strong></p>
-            <div class="producto-detalles__contenedores" id="contenedores-producto">
-                <!-- iconos de contenedores se cargarán aquí --> 
-            </div>
-            <p class="producto-detalles_precio" id="precio-producto">s/. 0.00</p>
-            <button class="producto-detalles_btn-añadir-carrito">Añadir a carrito</button>
-            <p href="#" class="producto-detalles__ver-mas">Ver más</>
-        </section>
-
-        <section class="producto-mas-detalles">
-            <h2 class="producto-mas-detalles__titulo">Más detalles del producto</h2>
-            <p class="producto-mas-detalles__descripcion" id="mas-detalles-producto">Más detalles del producto</p>
-        </section>
-    </main>
-     
-    <div id="footer-placeholder"></div>
-</body>
-</html>
+<section class="producto-mas-detalles">
+    <h2 class="producto-mas-detalles__titulo">Más detalles del producto</h2>
+    <p class="producto-mas-detalles__descripcion" id="mas-detalles-producto">Más detalles del producto</p>
+</section>
+</main>
