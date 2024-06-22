@@ -1,3 +1,5 @@
+import { launchProductoDetalles } from './utils/launch-detalles-producto.js';
+
 const productContainer = document.getElementById('product-container');
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
@@ -41,6 +43,10 @@ const createProductCard = (product) => {
     productElement.querySelector('.btn-decrease').addEventListener('click', () => decreaseProductQuantity(product));
     productElement.querySelector('.btn-buy').addEventListener('click', () => addToCart(product));
     productElement.querySelector('.btn-increase').addEventListener('click', () => increaseProductQuantity(product));
+
+    productElement.addEventListener('click', () => {
+        launchProductoDetalles(product);
+    });
 
     productContainer.appendChild(productElement);
 };
