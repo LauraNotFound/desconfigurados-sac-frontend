@@ -23,17 +23,17 @@ export async function loadComponent(elementId, url) {
         const data = await response.text();
         const container = document.getElementById(elementId);
         container.innerHTML = data;
-        executeScripts(container);
+        // executeScripts(container);
     } catch (error) {
         console.error('There was a problem with the fetch operation: ', error);
     }
 }
 
-function executeScripts(container) {
-    const scripts = container.querySelectorAll('script');
-    scripts.forEach(script => {
-        const newScript = document.createElement('script');
-        newScript.text = script.textContent;
-        document.body.appendChild(newScript).parentNode.removeChild(newScript);
-    });
-}
+// function executeScripts(container) {
+//     const scripts = container.querySelectorAll('script');
+//     scripts.forEach(script => {
+//         const newScript = document.createElement('script');
+//         newScript.text = script.textContent;
+//         document.body.appendChild(newScript).parentNode.removeChild(newScript);
+//     });
+// }

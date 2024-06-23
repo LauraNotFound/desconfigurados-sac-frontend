@@ -1,3 +1,5 @@
+import { launchProductoDetalles } from './utils/launch-detalles-producto.js';
+
 const productContainer = document.getElementById('product-container');
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
