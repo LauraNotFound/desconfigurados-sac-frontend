@@ -1,56 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
+<link rel="stylesheet" href="/css/catalogo.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Productos</title>
-    <link rel="stylesheet" href="/css/catalogo.css">
-</head>
+<div class="row">
+    <!-- Input de búsqueda -->
+    <input type="text" id="search-input" placeholder="Buscar producto...">
+    <button id="search-button">Buscar</button>
+</div>
 
-<body>
-
-    <div class="row">
-        <!-- Input de búsqueda -->
-        <input type="text" id="search-input" placeholder="Buscar producto...">
-        <button id="search-button">Buscar</button>
+<div class="row">
+    <!-- Filtro por categoría -->
+    <div id="category-filters">
+        <!-- Las categorías se llenarán dinámicamente -->
     </div>
+</div>
 
-    <div class="row">
-        <!-- Filtro por categoría -->
-        <div id="category-filters">
-            <!-- Las categorías se llenarán dinámicamente -->
-        </div>
+<div class="row">
+    <!-- Ordenamiento -->
+    <select id="sort-select">
+        <option value="price-asc">Precio Ascendente</option>
+        <option value="price-desc">Precio Descendente</option>
+        <option value="name-asc">Nombre Ascendente</option>
+        <option value="name-desc">Nombre Descendente</option>
+    </select>
+</div>
+
+<div class="row">
+    <!-- Filtro de rango de precio -->
+    <div>
+        <label for="price-range-min">Precio Mínimo:</label>
+        <input type="range" id="price-range-min" name="price-range-min" min="0" max="1000" value="0">
+        <span id="price-output-min">0</span>
     </div>
-
-    <div class="row">
-        <!-- Ordenamiento -->
-        <select id="sort-select">
-            <option value="price-asc">Precio Ascendente</option>
-            <option value="price-desc">Precio Descendente</option>
-            <option value="name-asc">Nombre Ascendente</option>
-            <option value="name-desc">Nombre Descendente</option>
-        </select>
+    <div>
+        <label for="price-range-max">Precio Máximo:</label>
+        <input type="range" id="price-range-max" name="price-range-max" min="0" max="1000" value="1000">
+        <span id="price-output-max">1000</span>
     </div>
+</div>
 
-    <div class="row">
-        <!-- Filtro de rango de precio -->
-        <div>
-            <label for="price-range-min">Precio Mínimo:</label>
-            <input type="range" id="price-range-min" name="price-range-min" min="0" max="1000" value="0">
-            <span id="price-output-min">0</span>
-        </div>
-        <div>
-            <label for="price-range-max">Precio Máximo:</label>
-            <input type="range" id="price-range-max" name="price-range-max" min="0" max="1000" value="1000">
-            <span id="price-output-max">1000</span>
-        </div>
-    </div>
+<div class="row">
+    <div id="product-container" class="product-container"></div>
+</div>
 
-    <div class="row">
-        <div id="product-container" class="product-container"></div>
-    </div>
-    <script src="/js/catalogo.js" type="module"></script>
-</body>
-
-</html>
+<script src="/js/catalogo.js" type="module"></script>
