@@ -18,7 +18,7 @@ const productoEjemplo = {
 
 async function initDetallesProducto(contenedor, producto) {
     contenedor.innerHTML = '';
-    contenedor.innerHTML = '<section id="detalles-producto-seccion" data-content-path="/html/producto-detalles.html"></section>';
+    contenedor.innerHTML = '<section id="detalles-producto-seccion" data-content-path="/html/producto-detalles.html" class="loaded"></section>';
     await loadComponent("detalles-producto-seccion", "/html/producto-detalles.html");
     cargarDetallesProducto();
 }
@@ -34,7 +34,7 @@ function cargarDetallesProducto() {
     medidasProducto.innerHTML = productoEjemplo.dimensions.map(dimension => `<li>${dimension}</li>`).join('');
     
     const contenedoresProducto = document.getElementById('contenedores-producto');
-    contenedoresProducto.innerHTML = productoEjemplo.containers.map(contenedor => `<img src='${contenedor.icon}' alt='${container.name}'>`).join('');
+    contenedoresProducto.innerHTML = productoEjemplo.containers.map(contenedor => `<img src='${contenedor.icon}' alt='${contenedor.name}'>`).join('');
 }
 
 export function launchProductoDetalles(producto) {
