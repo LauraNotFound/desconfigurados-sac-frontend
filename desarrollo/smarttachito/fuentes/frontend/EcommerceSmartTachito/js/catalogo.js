@@ -36,6 +36,7 @@ const createProductCard = (product) => {
         <button class="btn-decrease" style="cursor: pointer">-</button>
         <button class="btn-buy" style="cursor: pointer">Comprar</button>
         <button class="btn-increase" style="cursor: pointer">+</button>
+        <button class="btn-see-details" style="cursor: pointer">Ver detalles</button>
     `;
 
     productElement.innerHTML = productInnerHTML;
@@ -43,10 +44,7 @@ const createProductCard = (product) => {
     productElement.querySelector('.btn-decrease').addEventListener('click', () => decreaseProductQuantity(product));
     productElement.querySelector('.btn-buy').addEventListener('click', () => addToCart(product));
     productElement.querySelector('.btn-increase').addEventListener('click', () => increaseProductQuantity(product));
-
-    productElement.addEventListener('click', () => {
-        launchProductoDetalles(product);
-    });
+    productElement.querySelector('.btn-see-details').addEventListener('click', () => launchProductoDetalles(product));
 
     productContainer.appendChild(productElement);
 };
