@@ -10,22 +10,13 @@
 
 <body>
     <!-- aquí se incrusta el hearder -->
-    <div id="header-placeholder"></div>
+    <section id="header-placeholder" data-content-path="/html/components/header.html"></section>
 
-    <main id="contenido-principal">  
-        <section id="landing-seccion" data-content-path="./html/landing.html"></section>
-        <section id="catalogo-seccion" data-content-path="./html/catalogo.html"></section>
-        <section id="novedades-seccion" data-content-path="./html/novedades.html"></section>
-        <section id="nosotros-seccion" data-content-path="./html/nosotros.html"></section>
-        <section id="contacto-seccion" data-content-path="./html/contacto.html"></section>
-    </main>
+    <!-- aquí se incrusta las secciones de contenido -->
+    <section id="contenido-principal" class="dinamic" data-content-path="/html/components/contenido_spa.html"></section>
      
     <!-- aquí se incrusta el footer -->
-    <div id="footer-placeholder"></div>
-
-    <scripts>
-        
-    </scripts>
+    <section id="footer-placeholder" data-content-path="/html/components/footer.html"></section>
 
     <script type='module' src="./js/app.js"></script>
 </body>
