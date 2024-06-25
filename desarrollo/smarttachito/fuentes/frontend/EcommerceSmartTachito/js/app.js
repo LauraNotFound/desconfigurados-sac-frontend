@@ -1,60 +1,54 @@
-import { loadComponent } from './utils/loadComponents.js';
+import { headerController } from './components/header.js';
+import { spaController } from './components/contenidoSPA.js';
+import { footerController } from './components/footer.js';
 
-const loadSection = async (section) => {
-	const sectionE = section;
-	const rect = sectionE.getBoundingClientRect();
+/*
+export const initSPA = async () => {
+	const bodyInitIndexStructure = `
+		<!-- aquí se incrusta el hearder -->
+		<section id="header-placeholder" data-content-path="/html/components/header.html"></section>
 
-	if (!sectionE.classList.contains('loaded') && rect.top >= 0 && rect.bottom <= window.innerHeight) {
-		const contentPath = sectionE.dataset.contentPath;
-		await loadComponent(sectionE.id, contentPath)
+		<!-- aquí se incrusta las secciones de contenido -->
+		<section id="contenido-principal" data-content-path="/html/components/contenido_spa.html"></section>
 		
-		await loadAllScriptInSection(sectionE);
+		<!-- aquí se incrusta el footer -->
+		<section id="footer-placeholder" data-content-path="/html/components/footer.html"></section>
 
-		sectionE.classList.add('loaded');
-	}
+		<scripts id="scripts-sections"></scripts>
+		<script id='app-script' type='module' src="./js/app.js"></script>
+	`
+
+	document.querySelector('body').innerHTML = "";
+	document.querySelector('body').innerHTML = bodyInitIndexStructure;
+
+	
+	await loadSections(document);
+
+	// Inicializar la carga del contenido principal
+	await loadSections(document.getElementById('contenido-principal'));
 }
 
-const loadSections = async () => {
-	const sections = document.querySelectorAll('section');
-	for (const section of sections) {
-		await loadSection(section);
-	}
-}
 
-const loadAllScriptInSection = async (sectionE) => {
-	sectionE.querySelectorAll('script').forEach(script => {
-		const newScript = document.createElement('script');
-		newScript.src = script.src;
-		newScript.type = script.type || 'text/javascript';
-		document.body.appendChild(newScript);
-	});
-}
-
+// cuando los componentes del index esten completamente cargados
 document.addEventListener("DOMContentLoaded", async function () {
-	// cargar header y footer
-	await loadComponent("header-placeholder", "./html/components/header.html")
-	await loadComponent("footer-placeholder", "./html/components/footer.html");
-	await loadSections();
 
-	// Manejador de click para la navegación en el header
-	document.getElementById('header-placeholder').addEventListener('click', async (event) => {
-		
-		if (event.target.tagName === 'A' && event.target.dataset.section) {
-			event.preventDefault();
-
-			const sectionId = event.target.dataset.section;
-			const section = document.getElementById(sectionId);
-
-			await loadSection(section);
-
-			section.scrollIntoView({ behavior: 'smooth' });
-		}
-	});
+	// inicializar la carga de las secciones iniciales
+	initSPA();
 
 	// Manejar la carga de contenido dinámico basado en el scroll
 	window.addEventListener('scroll', async () => {
-		await loadSections();
+		await loadSections(document);
 	});
+	
+});
+
+*/
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+	headerController();
+	footerController();
+	spaController();
 	
 });
 
