@@ -32,6 +32,9 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .equipo-container h3 {
@@ -45,7 +48,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
+    width: 100%;
+    max-width: 1200px; /* Ajusta según tus necesidades */
     animation: fadeIn 1.5s ease-in-out;
+    justify-content: center;
 }
 
 .equipo-item {
@@ -56,6 +62,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     animation: fadeInUp 1s ease-in-out;
+    text-align: center;
 }
 
 .equipo-item:hover {
