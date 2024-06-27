@@ -46,7 +46,7 @@
                 </li>
               </ul>
               <ul class="navbar-nav ms-auto">               
-                <li class="nav-item"><a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed me-1 text-gray"></i>Cart<small class="text-gray fw-normal">(2)</small></a></li>
+                <li class="nav-item"><a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed me-1 text-gray"></i>Cart<small id="contenedor-cantidad-carrito" class="text-gray fw-normal">(0)</small></a></li>
                 <li class="nav-item"><a class="nav-link" href="#!"> <i class="far fa-heart me-1"></i><small class="text-gray fw-normal"> (0)</small></a></li>
                 <li class="nav-item"><a class="nav-link" href="#!"> <i class="fas fa-user me-1 text-gray fw-normal"></i>Login</a></li>
               </ul>
@@ -84,7 +84,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-5"><a class="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0" href="cart.html">Add to cart</a></div>
+                      <div class="col-sm-5"><a class="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0 button-add-to-cart">Add to cart</a></div>
                     </div><a class="btn btn-link text-dark text-decoration-none p-0" href="#!"><i class="far fa-heart me-2"></i>Add to wish list</a>
                   </div>
                 </div>
@@ -338,6 +338,13 @@
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
         
       </script>
+
+      <!-- scripts -->
+      <script src="/js/controllers/custom-triggers.js"></script>
+      <script src="/js/controllers/carrito-controller.js"></script>
+      
+      <!-- ----------------------------------------------------------- -->
+      
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
       <link rel="stylesheet" href="css/all.css" crossorigin="anonymous">
     </div>
