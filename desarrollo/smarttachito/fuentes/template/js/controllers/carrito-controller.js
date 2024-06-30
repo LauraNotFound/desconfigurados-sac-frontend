@@ -21,7 +21,7 @@ listCarrito = [
 */
 
 // obtener la lista que maneja el carrito del localstorage
-function get_lista_producto_carrito() {
+export function get_lista_producto_carrito() {
     // obtener lista de ids de productos en el carrito
     let listCarrito = localStorage.getItem('cart');
     
@@ -35,12 +35,14 @@ function get_lista_producto_carrito() {
     return listCarrito;
 }
 
-function set_lista_producto_carrito(lista_carrito) {
+// esta función hace persistente la lista de productos en el carrito en la localstorage
+export function set_lista_producto_carrito(lista_carrito) {
     localStorage.setItem('cart', JSON.stringify(lista_carrito))
 }
 
 // introducir nuevos valores al localstorage
 function refresh_lista_producto_carrito(id, amount) {
+    
     // obtener lista del localstorage
     let lista_producto_carrito = get_lista_producto_carrito();
 
@@ -67,6 +69,14 @@ function refresh_lista_producto_carrito(id, amount) {
     set_lista_producto_carrito(lista_producto_carrito);
 }
 
+// eliminar un producto del carrito de compras
+export function delete_producto_del_carrito(id) {
+    let lista_carrito = get_lista_producto_carrito();
+    lista_carrito = lista_carrito.filter(producto => producto.id != id);
+
+    set_lista_producto_carrito(lista_carrito);
+}
+
 // Obtiene la lista completa del carrito
 // calcula la cantidad total de productos
 // modifica el valor en el html
@@ -86,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // establecer el comportamiento añadir al carrito de los producto mostrados
     document.querySelectorAll('.contenedor-producto').forEach(productContainer => {
-        console.log(productContainer);
 
         // encontrar el botón add to cart asociarle el evento click
         productContainer.querySelector('.button-add-to-cart').addEventListener('click', () => {
