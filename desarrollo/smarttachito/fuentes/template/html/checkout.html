@@ -1,59 +1,83 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Boutique | Ecommerce bootstrap template</title>
+    <title>Smart Tachito Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- gLightbox gallery-->
-    <link rel="stylesheet" href="css/glightbox.min.css">
+    <link rel="stylesheet" href="/css/glightbox.min.css">
     <!-- Range slider-->
-    <link rel="stylesheet" href="css/nouislider.min.css">
+    <link rel="stylesheet" href="/css/nouislider.min.css">
     <!-- Choices CSS-->
-    <link rel="stylesheet" href="css/choices.min.css">
+    <link rel="stylesheet" href="/css/choices.min.css">
     <!-- Swiper slider-->
-    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
     <!-- Google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.3fcf2f25.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="/css/style.default.3fcf2f25.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.0a822280.css">
+    <link rel="stylesheet" href="/css/custom.0a822280.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="images/favicon.937cfaa3.png">
+    <link rel="shortcut icon" href="/images/favicon.937cfaa3.png">
   </head>
   <body>
     <div class="page-holder">
       <!-- navbar-->
-      <header class="header bg-white">
-        <div class="container px-lg-3">
-          <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0"><a class="navbar-brand" href="index.html"><span class="fw-bold text-uppercase text-dark">Boutique</span></a>
-            <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  <!-- Link--><a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <!-- Link--><a class="nav-link" href="shop.html">Shop</a>
-                </li>
-                <li class="nav-item">
-                  <!-- Link--><a class="nav-link" href="detail.html">Product detail</a>
-                </li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                  <div class="dropdown-menu mt-3 shadow-sm" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
-                </li>
-              </ul>
-              <ul class="navbar-nav ms-auto">               
-                <li class="nav-item"><a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed me-1 text-gray"></i>Cart<small class="text-gray fw-normal">(2)</small></a></li>
-                <li class="nav-item"><a class="nav-link" href="#!"> <i class="far fa-heart me-1"></i><small class="text-gray fw-normal"> (0)</small></a></li>
-                <li class="nav-item"><a class="nav-link" href="#!"> <i class="fas fa-user me-1 text-gray fw-normal"></i>Login</a></li>
-              </ul>
+    <header class="header bg-white">
+      <div class="container px-lg-3">
+        <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
+          <a class="navbar-brand" href="/index.html">
+            <span class="fw-bold text-uppercase text-dark">Smart Tachito Store</span>
+          </a>
+          <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <!-- Link--><a class="nav-link active" href="/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <!-- Link--><a class="nav-link" href="/html/shop.html">Comprar</a>
+              </li>
+
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="/html/cart.html"> <i
+                    class="fas fa-dolly-flatbed me-1 text-gray"></i>Carrito<small
+                    class="text-gray fw-normal">(2)</small></a></li>
+              <li class="acceso"><a class="nav-link" href="#!"><i class="fas fa-user me-1 text-gray fw-normal"></i>Acceder</a>
+              </li>
+            </ul>
+          </div>
+          <div id="mainModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="closeMainModal">&times;</span>
+              <button id="loginBtn">Login</button>
+              <button id="registerBtn">Registro</button>
+              <button id="userDetailBtn" style="display: none;">Detalle de Usuario</button>
+              <button id="logoutBtn" style="display: none;">Cerrar sesión</button>
             </div>
-          </nav>
-        </div>
-      </header>
+          </div>
+
+          <div id="login-modal" class="modal">
+            <div class="modal-content" id="login-modal-content">
+            </div>
+          </div>
+          <div id="register-modal" class="modal">
+            <div class="modal-content" id="register-modal-content">
+            </div>
+          </div>
+          <!-- Fin de login y registro -->
+
+        </nav>
+      </div>
+    </header>
       <!--  Modal -->
       <div class="modal fade" id="productView" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -247,72 +271,46 @@
         <div class="container py-4">
           <div class="row py-5">
             <div class="col-md-4 mb-3 mb-md-0">
-              <h6 class="text-uppercase mb-3">Customer services</h6>
+              <h6 class="text-uppercase mb-3">Servicio al cliente</h6>
               <ul class="list-unstyled mb-0">
-                <li><a class="footer-link" href="#!">Help &amp; Contact Us</a></li>
-                <li><a class="footer-link" href="#!">Returns &amp; Refunds</a></li>
-                <li><a class="footer-link" href="#!">Online Stores</a></li>
-                <li><a class="footer-link" href="#!">Terms &amp; Conditions</a></li>
+                <li><a class="footer-link" href="#!">Contáctanos</a></li>
+                <li><a class="footer-link" href="#!">Cambios y devoluciones</a></li>
+                <li><a class="footer-link" href="#!">Términos y condiciones</a></li>
               </ul>
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
-              <h6 class="text-uppercase mb-3">Company</h6>
+              <h6 class="text-uppercase mb-3">A cerca de nosotros</h6>
               <ul class="list-unstyled mb-0">
-                <li><a class="footer-link" href="#!">What We Do</a></li>
-                <li><a class="footer-link" href="#!">Available Services</a></li>
-                <li><a class="footer-link" href="#!">Latest Posts</a></li>
-                <li><a class="footer-link" href="#!">FAQs</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h6 class="text-uppercase mb-3">Social media</h6>
-              <ul class="list-unstyled mb-0">
-                <li><a class="footer-link" href="#!">Twitter</a></li>
-                <li><a class="footer-link" href="#!">Instagram</a></li>
-                <li><a class="footer-link" href="#!">Tumblr</a></li>
-                <li><a class="footer-link" href="#!">Pinterest</a></li>
+                <li><a class="footer-link" href="#!">¿Quiénes somos?</a></li>
+                <li><a class="footer-link" href="#!">Nuestra ubicación</a></li>
+                <li><a class="footer-link" href="#!">Alianzas estratégicas</a></li>
               </ul>
             </div>
           </div>
           <div class="border-top pt-4" style="border-color: #1d1d1d !important">
             <div class="row">
               <div class="col-md-6 text-center text-md-start">
-                <p class="small text-muted mb-0">© 2021 All rights reserved.</p>
+                <p class="small text-muted mb-0">© 2024 Todos los derechos reservados.</p>
               </div>
               <div class="col-md-6 text-center text-md-end">
-                <p class="small text-muted mb-0">Template designed by <a class="text-white reset-anchor" href="https://bootstrapious.com/p/boutique-bootstrap-e-commerce-template">Bootstrapious</a></p>
+                <p class="small text-muted mb-0">Vendido por <a class="text-white reset-anchor"
+                    href="https://bootstrapious.com/p/boutique-bootstrap-e-commerce-template">Smart Tachito</a></p>
               </div>
             </div>
           </div>
         </div>
       </footer>
-      <button class="btn btn-primary btn-sm d-none d-lg-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#style-switch" id="style-switch-button"><i class="fa fa-cog fa-2x"></i></button>
-      <div class="collapse" id="style-switch">
-        <h5>Select theme colour</h5>
-        <form class="mb-3">
-          <select class="form-select" name="colour" id="colour">
-            <option value="">select colour variant</option>
-            <option value="css/style.default.3fcf2f25.css">gold</option>
-            <option value="css/style.red.6487edc8.css">red</option>
-            <option value="css/style.pink.2763b2c6.css">pink</option>
-            <option value="css/style.green.5389dff1.css">green</option>
-            <option value="css/style.violet.6018f10d.css">violet</option>
-            <option value="css/style.sea.9789c848.css">sea</option>
-            <option value="css/style.blue.fe857ec8.css">blue</option>
-          </select>
-        </form>
-        <p><img class="img-fluid" src="images/template-mac.e1286699.png" alt=""></p>
-        <p class="text-muted text-sm">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
-      </div>
       <!-- JavaScript files-->
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/glightbox.min.js"></script>
-      <script src="js/nouislider.min.js"></script>
-      <script src="js/swiper-bundle.min.js"></script>
-      <script src="js/choices.min.js"></script>
-      <script src="js/front.e0700006.js"></script>
-      <script src="js/js-cookie.55cdbe0d.js"> </script>
-      <script src="js/demo.aa085612.js"> </script>
+      <script src="/js/productos.js"></script>
+      <script src="/js/acceso.js"></script>
+     <script src="/js/bootstrap.bundle.min.js"></script>
+     <script src="/js/glightbox.min.js"></script>
+     <script src="/js/nouislider.min.js"></script>
+     <script src="/js/swiper-bundle.min.js"></script>
+     <script src="/js/choices.min.js"></script>
+     <script src="/js/front.e0700006.js"></script>
+     <script src="/js/js-cookie.55cdbe0d.js"> </script>
+     <script src="/js/demo.aa085612.js"> </script>
       <script>
         // ------------------------------------------------------- //
         //   Inject SVG Sprite - 
