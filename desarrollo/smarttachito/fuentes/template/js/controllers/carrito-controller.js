@@ -41,7 +41,7 @@ export function set_lista_producto_carrito(lista_carrito) {
 }
 
 // introducir nuevos valores al localstorage
-function refresh_lista_producto_carrito(id, amount) {
+function refresh_lista_producto_carrito(id_url, amount) {
     
     // obtener lista del localstorage
     let lista_producto_carrito = get_lista_producto_carrito();
@@ -49,7 +49,7 @@ function refresh_lista_producto_carrito(id, amount) {
     // introducir nuevo valor o adicionar el existente
     // productStorage es igual a {id: "algun-id", amout: "cantidad-producto"}
     let index = 0;
-    while (index < lista_producto_carrito.length && id != lista_producto_carrito[index].id) {
+    while (index < lista_producto_carrito.length && id != lista_producto_carrito[index].id_url) {
         index++;
     }
 
@@ -58,7 +58,7 @@ function refresh_lista_producto_carrito(id, amount) {
     // osea no existe ese producto en el carrito
     if (index == lista_producto_carrito.length) {
         lista_producto_carrito.push({
-            "id": id,
+            "id_url": id_url,
             "amount": amount
         });
     } else { // caso contrario solo aumentamos el valor 
@@ -70,9 +70,9 @@ function refresh_lista_producto_carrito(id, amount) {
 }
 
 // eliminar un producto del carrito de compras
-export function delete_producto_del_carrito(id) {
+export function delete_producto_del_carrito(id_url) {
     let lista_carrito = get_lista_producto_carrito();
-    lista_carrito = lista_carrito.filter(producto => producto.id != id);
+    lista_carrito = lista_carrito.filter(producto => producto.id_url != id_url);
 
     set_lista_producto_carrito(lista_carrito);
 }
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // encontrar el botón add to cart asociarle el evento click
         productContainer.querySelector('.button-add-to-cart').addEventListener('click', () => {
-            const id_product = productContainer.getAttribute('data-producto-id');
+            const id_product = productContainer.getAttribute('data-producto-id_url');
             let amount_product = productContainer.querySelector('#cantidad-producto') ? parseInt(productContainer.querySelector('#cantidad-producto').value) : 1;
             
             refresh_lista_producto_carrito(id_product, amount_product);
@@ -117,6 +117,6 @@ window.addEventListener('storageChange', (event) => {
 // documentacion
 // para usar el controlador:
 // 1) colocar la clase "contenedor-producto" en el div o contenedor padre de cada producto (incluyendo el modal)
-//    y ademas colocar el atributo data-producto-id con el id correspondiente a ese producto.
+//    y ademas colocar el atributo data-producto-id_url con el id correspondiente a ese producto.
 // 2) en el input de cantidad de producto del modal colocar el id cantidad-producto. Ejemplo (<input class="form-control border-0 shadow-0 p-0" id="cantidad-producto" type="text" value="1">)
 // 3) y en todos los botones add-to-cart colocar la clase button-add-to-cart
