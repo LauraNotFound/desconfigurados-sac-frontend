@@ -2,7 +2,7 @@ import { delete_producto_del_carrito, get_lista_producto_carrito, set_lista_prod
 
 // -------------------------------- functions --------------------------------------
 // función para realzar la petición a la API y obtener la lista de productos 
-const requestProduct = async () => {
+export const requestProduct = async () => {
 
     // petición a la api
     const response = await fetch("/db/productos.json");
