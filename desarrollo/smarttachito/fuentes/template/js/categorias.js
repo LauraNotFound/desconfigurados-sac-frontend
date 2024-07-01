@@ -25,10 +25,14 @@ const createProductCard = (product) => {
     const imagen = product.imagen || 'https://via.placeholder.com/150';
 
     const productInnerHTML = `
-        <a class="category-item" href="/html/shop.html">
-            <img class="img-fluid" src=${imagen}" alt="${nombre}">
-            <strong class="category-item-title">${nombre}</strong>
-        </a>
+        <div class="product text-center">
+            <div class="mb-3 position-relative">
+                <img class="img-fluid w-100" src="${imagen}" alt="${nombre}">
+                <a class="d-block" href="/html/shop.html">
+                    <strong class="category-item-title">${nombre}</strong>
+                </a>
+            </div>
+        </div>
     `;
     productElement.innerHTML = productInnerHTML;
     productContainer.appendChild(productElement);
