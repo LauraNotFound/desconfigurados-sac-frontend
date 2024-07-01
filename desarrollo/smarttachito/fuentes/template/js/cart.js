@@ -1,12 +1,8 @@
 import { delete_producto_del_carrito, get_lista_producto_carrito, set_lista_producto_carrito } from "./controllers/carrito-controller.js";
 
 // -------------------------------- functions --------------------------------------
-// función para realzar la petición a la API y obtener la lista de productos 
+// función para realzar la petición a la API y obtener el producto
 export const requestProduct = async () => {
-
-    // petición a la api
-    const response = await fetch("/db/productos.json");
-    const productos = await response.json();
 
     // obtener la lista de {id, cantidad} de producto del locastorage
     const listCarrito = get_lista_producto_carrito();
@@ -19,14 +15,12 @@ export const requestProduct = async () => {
         // producto 
         if (!listCarrito[i].producto) { 
 
-            // encontramos el producto según el id respectivo
-            const producto = productos.find(pro => pro.id === listCarrito[i].id);
-            // verificamos que hemos encontrado un producto y no es nulll
-            if (producto) {
+            // petición a la api
+            const response = await fetch(url);
+            const producto = await response.json();
 
-                // creamos un atributo producto y le añadimos el encontrado
-                listCarrito[i].producto = producto;
-            }
+            // creamos un atributo producto y le añadimos el encontrado
+            listCarrito[i].producto = producto;
         }
     }
 
@@ -82,7 +76,7 @@ const establecerFuncionamientoDelBotonDeEliminado = () => {
         producto_carrito.querySelector('.borrar-producto-del-carrito').addEventListener('click', () => {
 
             // obtenemos el id del producto a eliminar 
-            const idProduct = producto_carrito.getAttribute('data-producto-id');
+            const idProduct = producto_carrito.getAttribute('data-producto-id_url');
 
             // eliminamos el producto del carrito
             delete_producto_del_carrito(idProduct);
@@ -192,19 +186,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // listCarrito = [
 //     {
-//         id: "1",
+//         id_url: "url/1",
 //         amount: 2
 //     },
 //     {
-//         id: "3",
+//         id_url: "url/3",
 //         amount: 4
 //     },
 //     {
-//         id: "5",
+//         id_url: "url/5",
 //         amount: 1
 //     },
 //     {
-//         id: "13"
+//         id_url: "url/13"
 //         amount: 2
 //     }
 // ]
