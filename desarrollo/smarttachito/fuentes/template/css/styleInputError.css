@@ -1,0 +1,12 @@
+.error-border {
+    border: 2px solid red;
+}
+
+@keyframes fade-out {
+    from { border-color: red }
+    to { border-color: initial }
+}
+
+.fade-out {
+    animation: fade-out 4s forwards;
+}

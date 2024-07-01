@@ -1,6 +1,7 @@
 import { requestProduct } from "./cart.js";
 import { get_lista_producto_carrito } from "./controllers/carrito-controller.js";
 
+// ------------------- resumen del carrito -------------------------------------------
 // esta función te devuelve el nodo (slide con el nombre y precio-total del producto), 
 // este nodo devuelto se incluye en la lista-resumen
 const getNodeSlideSummary = (nombreProducto, costoTotal) => {
@@ -71,13 +72,158 @@ const setProductosSummary = () => {
 
 }
 
+// ----------------------------------------------------------------------------------------
+// ----------------------------- formulario del checkout -------------------------------------
+// ----------- validación de campos ----------------------------------------------------------
+const setValidacionCampos = () => {
+    const firstLastNameRegex = /^[A-Za-z\s]*$/; // patron para validar nombres
+    const phoneRegex = /^\d+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    // validamos que el nombre y apellido no contenga número ni caracteres especiales
+    ['firstName', 'firstName2'].forEach(idFirstName => {
+        document.getElementById(idFirstName).addEventListener('input', function (e) {
+        
+            // verificamos si cumple el patrón
+            if (!firstLastNameRegex.test(e.target.value)) {
+                
+                // eliminamos la última entrada si no cumple el patrón
+                e.target.value = e.target.value.slice(0, -1);
+        
+                e.target.classList.add('error-border');
+        
+                setTimeout(() => {
+                    e.target.classList.add('fade-out');
+                }, 100);
+        
+                setTimeout(() => {
+                    e.target.classList.remove('error-border');
+                    e.target.classList.remove('fade-out');
+                }, 4100);
+            }
+        });
+    });
+
+    ['lastName', 'lastName2'].forEach(idLastName => {
+        document.getElementById(idLastName).addEventListener('input', function (e) {
+        
+            // verficamos si cumple el patrón
+            if (!firstLastNameRegex.test(e.target.value)) {
+        
+                // eliminamos la última entrada si no cumple el patrón
+                e.target.value = e.target.value.slice(0, -1);
+        
+                e.target.classList.add('error-border');
+        
+                setTimeout(() => {
+                    e.target.classList.add('fade-out');
+                }, 100);
+        
+                setTimeout(() => {
+                    e.target.classList.remove('error-border');
+                    e.target.classList.remove('fade-out');
+                }, 4100);
+            }
+        });
+    });
+
+    // formateamos la entrada cuando el input pierde el foco
+    ['firstName', 'firstName2'].forEach(idFirstName => {
+        document.getElementById(idFirstName).addEventListener('blur', function (e) {
+            e.target.value = formatName(e.target.value);
+        });
+    });
+
+    ['lastName', 'lastName2'].forEach(idLastName => {
+        document.getElementById(idLastName).addEventListener('blur', function (e) {
+            e.target.value = formatName(e.target.value);
+        });
+    });
+
+    // con esta función damos formato a los nombres
+    function formatName(name) {
+        "".trim()
+        return name
+        .trim() // elimina espacios en blanco al inicio y al final
+        .replace(/\s+/g, ' ') // reemplaza múltiples espacios con uno solo
+        .split(' ') // divide la cadena en palabras
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // colocamos la primera letra de la palabra en mayúsculas
+        .join(' '); // volvemos a unir todo con solo un espacio entre los elementos
+    }
+
+
+    // validamos número de teléfono
+    ['phone', 'phone2'].forEach(idPhone => {
+        document.getElementById(idPhone).addEventListener('input', function (e) {
+
+            if (!phoneRegex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0, -1);
+        
+                e.target.classList.add('error-border');
+        
+                setTimeout(() => {
+                    e.target.classList.add('fade-out');
+                }, 100);
+        
+                setTimeout(() => {
+                    e.target.classList.remove('error-border');
+                    e.target.classList.remove('fade-out');
+                }, 4100);
+            }
+        });
+    });
+
+    // validadmos dirección email
+    ['email', 'email2'].forEach(idEmail => {
+        document.getElementById(idEmail).addEventListener('blur', function (e) {
+            if (!emailRegex.test(e.target.value) && e.target.value != '') {
+                e.target.focus();
+                e.target.classList.add('error-border');
+        
+                setTimeout(() => {
+                    e.target.classList.add('fade-out');
+                }, 100);
+        
+                setTimeout(() => {
+                    e.target.classList.remove('error-border');
+                    e.target.classList.remove('fade-out');
+                }, 4100);
+            }
+        });
+    });
+}
+
+// ------------------------------------------------------------------------------------
+// ----------- Establecer el comportamiento al presionar Place Order ------------------
+const setSubmit = () => {
+    const formulario = document.getElementById('billing-details');
+
+    formulario.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const inputsFormulario = document.querySelectorAll('input');
+        const datosFormularioObject = {};
+
+        inputsFormulario.forEach(input => {
+            console.log(`${input.id}: ${input.value}`);
+            datosFormularioObject[input.id] = input.value;
+        });
+
+        console.log(datosFormularioObject);
+    });
+}
+// ------------------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // establecemos el resumen de productos
     setProductosSummary();
+
+    // configurar la validación de campos
+    setValidacionCampos();
     
-    // crear un objeto Billing details
+    // establecer el comportamiento del boton place-order
+    setSubmit();
+
 });
 
