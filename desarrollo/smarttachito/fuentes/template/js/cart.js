@@ -1,37 +1,12 @@
-import { delete_producto_del_carrito, get_lista_producto_carrito, set_lista_producto_carrito } from "./controllers/carrito-controller.js";
+import { delete_producto_del_carrito, get_lista_producto_carrito } from "./controllers/carrito.js";
+import { get_cantidad_productos_en_carrito } from "./controllers/carrito.js";
+import { set_trigger_para_modificacion_localstorage } from "./controllers/custom-triggers.js";
+
 
 // -------------------------------- functions --------------------------------------
-// función para realzar la petición a la API y obtener el producto
-export const requestProduct = async () => {
-
-    // obtener la lista de {id, cantidad} de producto del locastorage
-    const listCarrito = get_lista_producto_carrito();
-    
-    // iterar en toda esta lista
-    for (let i = 0; i < listCarrito.length; i++) {
-
-        // is no existe el atributo producto entonces es porque necesitamos encontrar esa
-        // información en la respuesta de la API y escribirla en la listCarrito en el campo
-        // producto 
-        if (!listCarrito[i].producto) { 
-
-            // petición a la api
-            const response = await fetch(url);
-            const producto = await response.json();
-
-            // creamos un atributo producto y le añadimos el encontrado
-            listCarrito[i].producto = producto;
-        }
-    }
-
-    // preservamos el nuevo estado de la listCarrito en el localstorage
-    // sobreescribiendo el anterior
-    set_lista_producto_carrito(listCarrito);    
-}
-
 // esta función se encargará de cargar las vistas de los productos en la lista en el html
 // además de establecer el comportamiento de algunos elementos como boton de eliminado
-const managerToDrawProductList = async () => {
+const managerToDrawProductList = () => {
     // Este es el contenedor que funcionará como lista, aquí se incrustará las plantillas 
     // con los datos de los productos en el carrito
     const listaCarritoHtml = document.getElementById('lista-carrito');
@@ -58,30 +33,9 @@ const managerToDrawProductList = async () => {
             }
         });
 
-        // funcion que establece le comportameinto del boton de eliminado
-        establecerFuncionamientoDelBotonDeEliminado();
-
     } catch (error) {
         console.error("Error al cargar los productos: ", error);
     }
-}
-
-// establecer el eliminado de productos del carrito
-const establecerFuncionamientoDelBotonDeEliminado = () => {
-    // eliminar un elemento del carrito
-    // obtenemos todos los elementos vista del producto en el carrito
-    document.querySelectorAll('.contenedor-producto').forEach(producto_carrito => {
-
-        // obtenemos el boton de eliminado de cada uno y escuchamos el click
-        producto_carrito.querySelector('.borrar-producto-del-carrito').addEventListener('click', () => {
-
-            // obtenemos el id del producto a eliminar 
-            const idProduct = producto_carrito.getAttribute('data-producto-id_url');
-
-            // eliminamos el producto del carrito
-            delete_producto_del_carrito(idProduct);
-        });
-    });
 }
 
 
@@ -92,9 +46,8 @@ const prepararPlantillaProductoCarrito = (productoCarrito) => {
     const slideProductoCarrito = document.createElement('tr');
 
     // añadimos atributos e incrustamos la plantilla del slider con datos específicos de producto
-    slideProductoCarrito.classList.add('contenedor-producto');
-    slideProductoCarrito.setAttribute('data-producto-id', productoCarrito.id);
     slideProductoCarrito.innerHTML = htmlCartProducto(
+        productoCarrito.id,
         productoCarrito.producto.nombre,
         productoCarrito.producto.imagen_principal,
         productoCarrito.producto.precio,
@@ -107,6 +60,7 @@ const prepararPlantillaProductoCarrito = (productoCarrito) => {
 
 // retorna la plantilla html con los datos del producto pasados
 const htmlCartProducto = (
+    id_url,
     nombre,
     imagen,
     precio,
@@ -134,7 +88,7 @@ const htmlCartProducto = (
         <td class="p-3 align-middle border-light">
             <p class="mb-0 small" id="precio-total">S/. ${(precio * cantidad).toFixed(2)}</p>
         </td>
-            <td class="p-3 align-middle border-light"><a class="reset-anchor" href="#!"><i class="fas fa-trash-alt small text-muted borrar-producto-del-carrito"></i></a>
+            <td class="p-3 align-middle border-light"><a class="reset-anchor" onclick="delete_producto_del_carrito(${id_url})" href="#!"><i class="fas fa-trash-alt small text-muted"></i></a>
         </td>
     `
 }
@@ -157,26 +111,33 @@ function calcularTotaSubTotal () {
     const totalElement = document.getElementById('total');
     subTotalElemnt.innerHTML = '';
     totalElement.innerHTML = '';
-    subTotalElemnt.innerHTML = subTotal.toFixed(2);
-    totalElement.innerHTML = subTotal.toFixed(2);
+    subTotalElemnt.innerHTML = `S/. ${subTotal.toFixed(2)}`;
+    totalElement.innerHTML = `S/. ${subTotal.toFixed(2)}`;
 }
 
+function actualizarContadorCantidadProducto() {
+    const contadorProductosCarrito = document.getElementById('contenedor-cantidad-carrito');
+    contadorProductosCarrito.innerHTML = '';
+    contadorProductosCarrito.innerHTML = `(${get_cantidad_productos_en_carrito()})`;
+}
 
 // ------------------- listeners ------------------------------------------
 // refrescar el estado de la lista cuando sucede un cambio en el campo cart del localstorage
 // osea cuando se modifica la lista del carrito
-window.addEventListener('storageChange', async (event) => {
+window.addEventListener('storageChange', (event) => {
     if (event.detail.key === 'cart') {
-        await managerToDrawProductList();
+        actualizarContadorCantidadProducto();
+        managerToDrawProductList();
         calcularTotaSubTotal();
     }
 });
 
 // ejecución inicial al cargar cuando el DOM a cargado por completo
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     // mostrar la lista inicial
-    await requestProduct();
-    await managerToDrawProductList();
+    set_trigger_para_modificacion_localstorage();
+    actualizarContadorCantidadProducto();
+    managerToDrawProductList();
     calcularTotaSubTotal();
 });
 
