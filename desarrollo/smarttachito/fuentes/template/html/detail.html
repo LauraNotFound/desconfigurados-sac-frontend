@@ -53,7 +53,7 @@
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="/html/cart.html"> <i
                     class="fas fa-dolly-flatbed me-1 text-gray"></i>Carrito<small
-                    class="text-gray fw-normal">(2)</small></a></li>
+                    class="text-gray fw-normal" id="contenedor-cantidad-carrito"></small></a></li>
               <li class="acceso"><a class="nav-link" href="#!"><i
                     class="fas fa-user me-1 text-gray fw-normal"></i>Acceder</a>
               </li>
@@ -95,16 +95,20 @@
                     <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-2.62056b28.jpg" alt="..."></div>
                     <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-3.4edd674c.jpg" alt="..."></div>
                     <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-4.072fd9d4.jpg" alt="..."></div>
+                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-4.072fd9d4.jpg" alt="..."></div>
                   </div>
                 </div>
               </div>
               <div class="col-sm-10 order-1 order-sm-2">
                 <div class="swiper product-slider">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide h-auto"><a class="glightbox product-view"
-                        href="/images/product-detail-1.023bc49d.jpg" data-gallery="gallery2"
-                        data-glightbox="Product item 1"><img class="img-fluid"
-                          src="/images/product-detail-1.023bc49d.jpg" alt="..."></a></div>
+                    <div class="swiper-slide h-auto">
+                      <a class="glightbox product-view"
+                      href="/images/product-detail-1.023bc49d.jpg" data-gallery="gallery2"
+                      data-glightbox="Product item 1">
+                        <img class="img-fluid" src="/images/product-detail-1.023bc49d.jpg" alt="...">
+                      </a>
+                    </div>
                     <div class="swiper-slide h-auto"><a class="glightbox product-view"
                         href="/images/product-detail-2.62056b28.jpg" data-gallery="gallery2"
                         data-glightbox="Product item 2"><img class="img-fluid"
@@ -117,6 +121,13 @@
                         href="/images/product-detail-4.072fd9d4.jpg" data-gallery="gallery2"
                         data-glightbox="Product item 4"><img class="img-fluid"
                           src="/images/product-detail-4.072fd9d4.jpg" alt="..."></a></div>
+                    <div class="swiper-slide h-auto">
+                      <a class="glightbox product-view"
+                      href="/images/product-detail-1.023bc49d.jpg" data-gallery="gallery2"
+                      data-glightbox="Product item 5">
+                        <img class="img-fluid" src="/images/product-detail-1.023bc49d.jpg" alt="...">
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -124,26 +135,26 @@
           </div>
           <!-- PRODUCT DETAILS-->
           <div class="col-lg-6">
-            <h1>Nombre del producto</h1>
-            <p class="text-muted lead">Precio en soles</p>
-            <p class="text-sm mb-4">Aquí va la descripción corta</p>
+            <h1 id="nombre-producto">Nombre del producto</h1>
+            <p class="text-muted lead" id="precio-producto">Precio en soles</p>
+            <p class="text-sm mb-4" id="descripcion-corta-producto">Aquí va la descripción corta</p>
             <div class="row align-items-stretch mb-4">
               <div class="col-sm-5 pr-sm-0">
                 <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
                   <span class="small text-uppercase text-gray mr-4 no-select">Cantidad</span>
                   <div class="quantity">
                     <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                    <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
+                    <input id="cantidad-producto" class="form-control border-0 shadow-0 p-0" type="text" value="1">
                     <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3 pl-sm-0"><a
-                  class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="/html/cart.html">Agregar</a></div>
+                  class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="/html/cart.html" id="agregar-al-carrito">Agregar</a></div>
             </div>
             <ul class="list-unstyled small d-inline-block">
               <li class="px-3 py-2 mb-1 bg-white text-muted"><strong
-                  class="text-uppercase text-dark">Categoría:</strong><a class="reset-anchor ms-2" href="#!">Aquí va la categoría</a></li>
+                  class="text-uppercase text-dark">Categoría:</strong><a class="reset-anchor ms-2" href="#!" id="categoria-producto">Aquí va la categoría</a></li>
             </ul>
           </div>
         </div>
@@ -155,8 +166,8 @@
         <div class="tab-content mb-5" id="myTabContent">
           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div class="p-4 p-lg-5 bg-white">
-              <h6 class="text-uppercase">Nombre del producto</h6>
-              <p class="text-muted text-sm mb-0">Aquí va la descripción larga</p>
+              <h6 class="text-uppercase" id="nombre-producto-2">Nombre del producto</h6>
+              <p class="text-muted text-sm mb-0" id="descripcion-larga-producto">Aquí va la descripción larga</p>
             </div>
           </div>
         </div>
@@ -198,6 +209,7 @@
     </footer>
 
     <!-- JavaScript files-->
+    <script type="module" src="/js/detail.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/glightbox.min.js"></script>
     <script src="/js/nouislider.min.js"></script>

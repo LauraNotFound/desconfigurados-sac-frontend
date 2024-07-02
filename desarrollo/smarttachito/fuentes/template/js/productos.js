@@ -1,4 +1,5 @@
 import { guardar_producto_en_carrito } from "./controllers/carrito";
+import { showDetails } from "./controllers/showDetails";
 
 const productContainer = document.getElementById('product-container');
 const categoryContainer = document.getElementById('category-container');
@@ -89,7 +90,7 @@ const createProductCard = (product) => {
         <div class="product text-center">
             <div class="mb-3 position-relative">
                 <div class="badge text-white bg-"></div>
-                <a class="d-block" href="detail.html">
+                <a class="d-block" href="detail.html" onclick='showDetails(${product})'>
                     <img class="img-fluid w-100" src="${imagen_principal}" alt="${nombre}">
                 </a>
                 <div class="product-overlay">
