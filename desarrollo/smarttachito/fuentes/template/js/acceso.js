@@ -53,18 +53,22 @@ function openRegisterModal() {
         });
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     const loginModal = document.getElementById('login-modal');
     const registerModal = document.getElementById('register-modal');
+    const carritoModal = document.getElementById('carrito-modal');
     if (event.target == loginModal) {
         loginModal.style.display = "none";
     }
     if (event.target == registerModal) {
         registerModal.style.display = "none";
     }
+    if (event.target === carritoModal) {
+        carritoModal.style.display = 'none';
+    }
 }
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     if (event.target.classList.contains('close-modal')) {
         const loginModal = document.getElementById('login-modal');
         const registerModal = document.getElementById('register-modal');
@@ -82,7 +86,7 @@ function checkLoginAndRedirect() {
     }
 }
 
-function logout(){
+function logout() {
     localStorage.removeItem('loggedInUser');
     updateUIBasedOnLoginStatus();
 }
@@ -93,13 +97,13 @@ function updateUIBasedOnLoginStatus() {
     const registerButton = document.getElementById('registerBtn');
     const userDetailButton = document.getElementById('userDetailBtn');
     const logoutButton = document.getElementById('logoutBtn');
-    if(loggedInUser){
+    if (loggedInUser) {
         logginButton.style.display = 'none';
         registerButton.style.display = 'none';
         userDetailButton.style.display = 'inline-block';
         logoutButton.style.display = 'inline-block';
     }
-    else{
+    else {
         logginButton.style.display = 'inline-block';
         registerButton.style.display = 'inline-block';
         userDetailButton.style.display = 'none';
@@ -109,7 +113,7 @@ function updateUIBasedOnLoginStatus() {
 
 function setupLoginForm() {
     const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', async function(event) {
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const email = document.getElementById('email').value;
@@ -118,9 +122,9 @@ function setupLoginForm() {
 
         try {
             const response = await fetch('https://dolphin-app-lll72.ondigitalocean.app/usuarios/');
-            const usuarios = await response.json();
+            const users = await response.json();
 
-            const user = usuarios.find(user => user.email === email && user.password === password);
+            const user = users.find(user => user.email === email && user.username === password);
 
             if (user) {
                 loginMessage.style.color = 'green';
@@ -140,41 +144,47 @@ function setupLoginForm() {
 }
 
 function setupRegisterForm() {
-    const registerForm = document.getElementById('register-form');
-    registerForm.addEventListener('submit', async function(event) {
+    const registerForm = document.getElementById('registroForm');
+    registerForm.addEventListener('submit', async function (event) {
         event.preventDefault();
+        const passwordValue = document.getElementById('password').value;
 
-        const nombres = document.getElementById('nombres').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const registerMessage = document.getElementById('register-message');
+        const data = {
+            username: passwordValue, 
+            email: document.getElementById('email').value,
+            nombres: document.getElementById('nombres').value,
+            apellido_p: document.getElementById('apellido_p').value,
+            apellido_m: document.getElementById('apellido_m').value,
+            numero_documento: document.getElementById('numero_documento').value,
+            celular: document.getElementById('celular').value,
+            password: passwordValue, 
+            usuario_administrador: false,
+            usuario_activo: true
+        };
 
-        try {
-            const response = await fetch('https://dolphin-app-lll72.ondigitalocean.app/usuarios/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    nombres: nombres,
-                    email: email,
-                    password: password,
-                    avatar: 'https://api.lorem.space/image/face?w=640&h=480' 
-                })
+        fetch('https://dolphin-app-lll72.ondigitalocean.app/usuarios/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errData => {
+                        console.log('Error Data:', errData);
+                        throw new Error(`Error ${response.status}: ${errData.detail || 'Datos inválidos'}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Registro exitoso. Ahora puedes iniciar sesión.');
+                window.location.href = '/index.html';
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+                alert(error.message);
             });
-
-            if (response.ok) {
-                registerMessage.style.color = 'green';
-                registerMessage.textContent = 'Registro exitoso';
-            } else {
-                const errorData = await response.json();
-                registerMessage.style.color = 'red';
-                registerMessage.textContent = `Error: ${errorData.message}`;
-            }
-        } catch (error) {
-            registerMessage.style.color = 'red';
-            registerMessage.textContent = 'Error al intentar registrarse';
-            console.error('Error:', error);
-        }
     });
 }

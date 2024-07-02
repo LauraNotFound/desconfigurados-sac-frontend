@@ -1,6 +1,3 @@
-import { guardar_producto_en_carrito } from "./controllers/carrito";
-import { showDetails } from "./controllers/showDetails";
-
 const productContainer = document.getElementById('product-container');
 const categoryContainer = document.getElementById('category-container');
 const priceSlider = document.getElementById('price-slider');
@@ -10,7 +7,7 @@ const maxPriceLabel = document.getElementById('max-price');
 let allProducts = [];
 let categories = new Set();
 let selectedCategories = new Set();
-let maxPrice = 1000;
+let maxPrice = 300;
 let minPrice = 0;
 
 const fetchProducts = async () => {
