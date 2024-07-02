@@ -37,7 +37,7 @@ export function get_lista_producto_carrito() {
 
 // Obtiene la lista completa del carrito
 // calcula la cantidad total de productos
-export function actualizarCantidadCarrito() {
+export function get_cantidad_productos_en_carrito() {
     let cantidadProductosCarrito = 0;
 
     get_lista_producto_carrito().forEach(productoCarrito => cantidadProductosCarrito += productoCarrito.amount)
