@@ -79,7 +79,7 @@ export function set_lista_producto_carrito(lista_carrito) {
 }
 
 // introducir nuevos valores al localstorage
-export async function guardar_producto_en_carrito(id_url, amount) {
+export async function guardar_producto_en_carrito(id_url, producto, amount) {
     
     // obtener lista del localstorage
     let lista_producto_carrito = get_lista_producto_carrito();
@@ -87,7 +87,7 @@ export async function guardar_producto_en_carrito(id_url, amount) {
     // introducir nuevo valor o adicionar el existente
     // productStorage es igual a {id: "algun-id", amout: "cantidad-producto"}
     let index = 0;
-    while (index < lista_producto_carrito.length && id != lista_producto_carrito[index].id_url) {
+    while (index < lista_producto_carrito.length && id_url != lista_producto_carrito[index].id_url) {
         index++;
     }
 
@@ -95,10 +95,6 @@ export async function guardar_producto_en_carrito(id_url, amount) {
     // recorrimos toda la lista sin hallar el valor
     // osea no existe ese producto en el carrito
     if (index == lista_producto_carrito.length) {
-
-        // conseguir el producto de la base de datos
-        let producto = await fetch(id_url);
-        producto = await producto.json();
         
         lista_producto_carrito.push({
             "id_url": id_url,
