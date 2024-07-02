@@ -1,5 +1,5 @@
-import { requestProduct } from "./cart.js";
-import { get_lista_producto_carrito } from "./controllers/carrito-controller.js";
+import { get_lista_producto_carrito } from "./controllers/carrito.js";
+
 
 // ------------------- resumen del carrito -------------------------------------------
 // esta función te devuelve el nodo (slide con el nombre y precio-total del producto), 
@@ -41,7 +41,6 @@ const setProductosSummary = () => {
 
     // obtenemos la lista de los produtos en el carrito
     const listaProductosCarrito = get_lista_producto_carrito();
-    requestProduct(); // nos aseguramos que la información de los productos han sido recolectados de la API (en otras palabras que en el localstorage exista el campo producto en cada diccionario de la lista {id, producto, amount})
 
     // inicializamos un contador para la suma de precios totales
     let precioTotal = 0;
@@ -205,7 +204,6 @@ const setSubmit = () => {
         const datosFormularioObject = {};
 
         inputsFormulario.forEach(input => {
-            console.log(`${input.id}: ${input.value}`);
             datosFormularioObject[input.id] = input.value;
         });
 
