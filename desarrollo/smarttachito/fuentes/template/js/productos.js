@@ -79,7 +79,7 @@ priceSlider.addEventListener('input', handlePriceSliderChange);
 const createProductCard = (product) => {
     const productElement = document.createElement('div');
     productElement.classList.add('product-card');
-    const nombre = product.nombre;
+    const nombre = product.nombre; 
     const precio = product.precio;
     const imagen_principal = product.imagen_principal || 'https://via.placeholder.com/150';
 
@@ -87,24 +87,23 @@ const createProductCard = (product) => {
         <div class="product text-center">
             <div class="mb-3 position-relative">
                 <div class="badge text-white bg-"></div>
-                <a class="d-block" href="detail.html" onclick='showDetails(${product})'>
+                <a class="d-block" href="detail.html?nombre=${encodeURIComponent(nombre)}">
                     <img class="img-fluid w-100" src="${imagen_principal}" alt="${nombre}">
                 </a>
                 <div class="product-overlay">
                     <ul class="mb-0 list-inline">
-                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#!"><i class="far fa-heart"></i></a></li>
-                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html" onclick='guardar_producto_en_carrito(${product.url}, ${product}, 1)'>Add to cart</a></li>
-                        <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-bs-toggle="modal"><i class="fas fa-expand"></i></a></li>
+                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Agregar al carrito</a></li>
                     </ul>
                 </div>
             </div>
-            <h6><a class="reset-anchor" href="detail.html">${nombre}</a></h6>
+            <h6><a class="reset-anchor" href="detail.html?nombre=${encodeURIComponent(nombre)}">${nombre}</a></h6>
             <p class="small text-muted">${precio}</p>
         </div>
     `;
     productElement.innerHTML = productInnerHTML;
     productContainer.appendChild(productElement);
 };
+
 
 const updateProductContainer = (filteredProducts) => {
     productContainer.innerHTML = '';

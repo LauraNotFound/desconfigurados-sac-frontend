@@ -25,7 +25,7 @@
   <!-- Custom stylesheet - for your changes-->
   <link rel="stylesheet" href="/css/custom.0a822280.css">
   <!-- Favicon-->
-  <link rel="shortcut icon" href="/images/favicon.937cfaa3.png">
+  <link rel="shortcut icon" href="/images/logo.png">
 </head>
 
 <body>
@@ -43,17 +43,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <!-- Link--><a class="nav-link active" href="/index.html">Home</a>
+                <a class="nav-link active" href="/index.html">Home</a>
               </li>
               <li class="nav-item">
-                <!-- Link--><a class="nav-link" href="/html/shop.html">Comprar</a>
+                <a class="nav-link" href="/html/shop.html">Comprar</a>
               </li>
-
             </ul>
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="/html/cart.html"> <i
-                    class="fas fa-dolly-flatbed me-1 text-gray"></i>Carrito<small
-                    class="text-gray fw-normal" id="contenedor-cantidad-carrito"></small></a></li>
+                    class="fas fa-dolly-flatbed me-1 text-gray"></i>Carrito<small class="text-gray fw-normal"
+                    id="contenedor-cantidad-carrito"></small></a></li>
               <li class="acceso"><a class="nav-link" href="#!"><i
                     class="fas fa-user me-1 text-gray fw-normal"></i>Acceder</a>
               </li>
@@ -81,21 +80,25 @@
         </nav>
       </div>
     </header>
-
     <section class="py-5">
       <div class="container">
         <div class="row mb-5">
           <div class="col-lg-6">
-            <!-- PRODUCT SLIDER-->
             <div class="row m-sm-0">
               <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
-                <div class="swiper product-slider-thumbs">
+                <div class="swiper product-slider-thumbs"
+                  style="display: flex; flex-direction: column; align-items: center;">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-1.023bc49d.jpg" alt="..."></div>
-                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-2.62056b28.jpg" alt="..."></div>
-                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-3.4edd674c.jpg" alt="..."></div>
-                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-4.072fd9d4.jpg" alt="..."></div>
-                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="/images/product-detail-4.072fd9d4.jpg" alt="..."></div>
+                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="" alt="..."
+                        id="imagen-principal"></div>
+                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="" alt="..."
+                        id="imagen-secundaria-1"></div>
+                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="" alt="..."
+                        id="imagen-secundaria-2"></div>
+                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="" alt="..."
+                        id="imagen-secundaria-3"></div>
+                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="" alt="..."
+                        id="imagen-360"></div>
                   </div>
                 </div>
               </div>
@@ -103,29 +106,33 @@
                 <div class="swiper product-slider">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide h-auto">
-                      <a class="glightbox product-view"
-                      href="/images/product-detail-1.023bc49d.jpg" data-gallery="gallery2"
-                      data-glightbox="Product item 1">
-                        <img class="img-fluid" src="/images/product-detail-1.023bc49d.jpg" alt="...">
+                      <a class="glightbox product-view" href="" data-gallery="gallery2" data-glightbox="Product item 1"
+                        id="imagen-principal-link">
+                        <img class="img-fluid" src="" alt="..." id="img-p">
                       </a>
                     </div>
-                    <div class="swiper-slide h-auto"><a class="glightbox product-view"
-                        href="/images/product-detail-2.62056b28.jpg" data-gallery="gallery2"
-                        data-glightbox="Product item 2"><img class="img-fluid"
-                          src="/images/product-detail-2.62056b28.jpg" alt="..."></a></div>
-                    <div class="swiper-slide h-auto"><a class="glightbox product-view"
-                        href="/images/product-detail-3.4edd674c.jpg" data-gallery="gallery2"
-                        data-glightbox="Product item 3"><img class="img-fluid"
-                          src="/images/product-detail-3.4edd674c.jpg" alt="..."></a></div>
-                    <div class="swiper-slide h-auto"><a class="glightbox product-view"
-                        href="/images/product-detail-4.072fd9d4.jpg" data-gallery="gallery2"
-                        data-glightbox="Product item 4"><img class="img-fluid"
-                          src="/images/product-detail-4.072fd9d4.jpg" alt="..."></a></div>
                     <div class="swiper-slide h-auto">
-                      <a class="glightbox product-view"
-                      href="/images/product-detail-1.023bc49d.jpg" data-gallery="gallery2"
-                      data-glightbox="Product item 5">
-                        <img class="img-fluid" src="/images/product-detail-1.023bc49d.jpg" alt="...">
+                      <a class="glightbox product-view" href="" data-gallery="gallery2" data-glightbox="Product item 2"
+                        id="imagen-secundaria-1-link">
+                        <img class="img-fluid" src="" alt="..." id="img-1">
+                      </a>
+                    </div>
+                    <div class="swiper-slide h-auto">
+                      <a class="glightbox product-view" href="" data-gallery="gallery2" data-glightbox="Product item 3"
+                        id="imagen-secundaria-2-link">
+                        <img class="img-fluid" src="" alt="..." id="img-2">
+                      </a>
+                    </div>
+                    <div class="swiper-slide h-auto">
+                      <a class="glightbox product-view" href="" data-gallery="gallery2" data-glightbox="Product item 4"
+                        id="imagen-secundaria-3-link">
+                        <img class="img-fluid" src="" alt="..." id="img-3">
+                      </a>
+                    </div>
+                    <div class="swiper-slide h-auto">
+                      <a class="glightbox product-view" href="" data-gallery="gallery2" data-glightbox="Product item 5"
+                        id="imagen-360-link">
+                        <img class="img-fluid" src="" alt="..." id="img-360">
                       </a>
                     </div>
                   </div>
@@ -133,11 +140,10 @@
               </div>
             </div>
           </div>
-          <!-- PRODUCT DETAILS-->
           <div class="col-lg-6">
-            <h1 id="nombre-producto">Nombre del producto</h1>
-            <p class="text-muted lead" id="precio-producto">Precio en soles</p>
-            <p class="text-sm mb-4" id="descripcion-corta-producto">Aquí va la descripción corta</p>
+            <h1 id="nombre-producto"></h1>
+            <p class="text-muted lead" id="precio-producto"></p>
+            <p class="text-sm mb-4" id="descripcion-corta-producto"></p>
             <div class="row align-items-stretch mb-4">
               <div class="col-sm-5 pr-sm-0">
                 <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
@@ -150,24 +156,31 @@
                 </div>
               </div>
               <div class="col-sm-3 pl-sm-0"><a
-                  class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="/html/cart.html" id="agregar-al-carrito">Agregar</a></div>
+                  class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
+                  href="/html/cart.html" id="agregar-al-carrito">Agregar</a></div>
             </div>
             <ul class="list-unstyled small d-inline-block">
+              <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Stock:</strong><a
+                  class="reset-anchor ms-2" href="#!" id="categoria-producto"></a></li>
               <li class="px-3 py-2 mb-1 bg-white text-muted"><strong
-                  class="text-uppercase text-dark">Categoría:</strong><a class="reset-anchor ms-2" href="#!" id="categoria-producto">Aquí va la categoría</a></li>
+                  class="text-uppercase text-dark">Categoría:</strong><a class="reset-anchor ms-2" href="#!"
+                  id="categoria-nombre"></a></li>
             </ul>
           </div>
         </div>
-        <!-- DETAILS TABS-->
         <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
-          <li class="nav-item"><a class="nav-link text-uppercase active" id="description-tab" data-bs-toggle="tab"
-              href="#description" role="tab" aria-controls="description" aria-selected="true">Descripción</a></li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase active" id="description-tab" data-bs-toggle="tab" href="#description"
+              role="tab" aria-controls="description" aria-selected="true">
+              Descripción
+            </a>
+          </li>
         </ul>
         <div class="tab-content mb-5" id="myTabContent">
           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div class="p-4 p-lg-5 bg-white">
-              <h6 class="text-uppercase" id="nombre-producto-2">Nombre del producto</h6>
-              <p class="text-muted text-sm mb-0" id="descripcion-larga-producto">Aquí va la descripción larga</p>
+              <h6 class="text-uppercase" id="nombre-producto-2"></h6>
+              <p class="text-muted text-sm mb-0" id="descripcion-larga-producto"></p>
             </div>
           </div>
         </div>
@@ -209,7 +222,8 @@
     </footer>
 
     <!-- JavaScript files-->
-    <script type="module" src="/js/detail.js"></script>
+    <script src="/js/detail.js"></script>
+    <script src="/js/acceso.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/glightbox.min.js"></script>
     <script src="/js/nouislider.min.js"></script>
@@ -234,6 +248,7 @@
       injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
 
     </script>
+
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="/css/all.css" crossorigin="anonymous">
   </div>

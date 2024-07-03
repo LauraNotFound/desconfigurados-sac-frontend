@@ -1,114 +1,102 @@
-import { set_trigger_para_modificacion_localstorage } from "./controllers/custom-triggers.js";
-import { get_cantidad_productos_en_carrito, guardar_producto_en_carrito } from "./controllers/carrito.js";
+const getQueryParams = () => {
+    const params = {};
+    const queryString = window.location.search.slice(1);
+    const queryArray = queryString.split('&');
+    queryArray.forEach(query => {
+        const [key, value] = query.split('=');
+        params[key] = decodeURIComponent(value);
+    });
+    return params;
+};
 
-function actualizarContadorCantidadProducto() {
-    const contadorProductosCarrito = document.getElementById('contenedor-cantidad-carrito');
-    contadorProductosCarrito.innerHTML = '';
-    contadorProductosCarrito.innerHTML = `(${get_cantidad_productos_en_carrito()})`;
-}
-
-window.addEventListener('storageChange', function (e) {
-    if (e.target.value === 'cart') {
-        actualizarContadorCantidadProducto();
+const getProductDetails = async (nombre) => {
+    try {
+        const response = await fetch(`https://dolphin-app-lll72.ondigitalocean.app/productos?nombre=${encodeURIComponent(nombre)}`); 
+        const products = await response.json();
+        return products.length > 0 ? products[0] : null;
+    } catch (error) {
+        console.error('Error fetching product details:', error);
+        return null;
     }
-});
+};
 
-function cargarContenidoDetallesProducto() {
-    // recuperamos el producto a representar en los detalles
-    const producto = localStorage.getItem('detailsProduct');
+const getCategoryDetails = async (categoryUrl) => {
+    try {
+        const response = await fetch(categoryUrl); 
+        const category = await response.json();
+        return category;
+    } catch (error) {
+        console.error('Error fetching category details:', error);
+        return null;
+    }
+};
 
-    // imágenes
-    const listImages = [
-        producto.imagen_principal,
-        producto.imagen_secundaria_1,
-        producto.imagen_secundaria_2,
-        producto.imagen_secundaria_3,
-        producto.imagen_360
-    ]
+const renderProductDetails = (product, category) => {
+    if (!product) {
+        document.getElementById('product-detail-container').innerText = 'Producto no encontrado.';
+        return;
+    }
 
-    // load imagenes del left nav
-    const listImgElements = document.querySelectorAll('.w-100');
-    let index = 0;
-    listImgElements.forEach(imgE => {
-        imgE.src = listImages[index++];
+    const { nombre, descripcion_breve, descripcion_extendida, precio, imagen_principal, imagen_secundaria_1, imagen_secundaria_2, imagen_secundaria_3, imagen_360, stock } = product;
+    const categoryName = category ? category.nombre : 'Categoría no encontrada';
+
+    // Actualiza solo los elementos dinámicos
+    document.getElementById('nombre-producto').textContent = nombre;
+    document.getElementById('precio-producto').textContent = precio;
+    document.getElementById('descripcion-corta-producto').textContent = descripcion_breve;
+    document.getElementById('cantidad-producto').value = 1; // Ejemplo, actualizar según la lógica de tu aplicación
+    document.getElementById('categoria-producto').textContent = stock;
+    document.getElementById('categoria-nombre').textContent = categoryName;
+    document.getElementById('descripcion-larga-producto').textContent = descripcion_extendida;
+
+    // Actualiza las imágenes principales y secundarias
+    const updateImage = (linkId, imgId, href, src) => {
+        const linkElement = document.getElementById(linkId);
+        const imgElement = document.getElementById(imgId);
+
+        if (linkElement && imgElement) {
+            linkElement.href = href;
+            imgElement.src = src;
+        }
+    };
+
+    updateImage('imagen-principal-link', 'imagen-principal', imagen_principal, imagen_principal);
+    updateImage('imagen-secundaria-1-link', 'imagen-secundaria-1', imagen_secundaria_1, imagen_secundaria_1);
+    updateImage('imagen-secundaria-2-link', 'imagen-secundaria-2', imagen_secundaria_2, imagen_secundaria_2);
+    updateImage('imagen-secundaria-3-link', 'imagen-secundaria-3', imagen_secundaria_3, imagen_secundaria_3);
+    updateImage('imagen-360-link', 'imagen-360', imagen_360, imagen_360);
+
+    document.getElementById('img-p').src = imagen_principal;
+    document.getElementById('img-1').src = imagen_secundaria_1;
+    document.getElementById('img-2').src = imagen_secundaria_2;
+    document.getElementById('img-3').src = imagen_secundaria_3;
+    document.getElementById('img-360').src = imagen_360;
+};
+
+
+
+const queryParams = getQueryParams();
+const productName = queryParams.nombre;
+if (productName) {
+    getProductDetails(productName).then(product => {
+        if (product) {
+            getCategoryDetails(product.categoria).then(category => {
+                renderProductDetails(product, category);
+            });
+        } else {
+            renderProductDetails(null, null);
+        }
     });
-
-    // load imagenes auto-slide
-    const listImgFluid = document.querySelectorAll('.img-fluid');
-    index = 0;
-    listImgFluid.forEach(imgE => {
-        imgE.src = listImages[index++];
-    });
-
-    // load nombre del producto
-    const nombreProducto = document.getElementById('nombre-producto');
-    nombreProducto.innerHTML = '';
-    nombreProducto.innerHTML = producto.nombre;
-
-    // load precio del producto
-    const precioProducto = document.getElementById('precio-producto');
-    precioProducto.innerHTML = '';
-    precioProducto.innerHTML = `S/. ${producto.precio}`;
-
-    // load descripción corta
-    const descripcionCortaProducto = document.getElementById('descripcion-corta-producto');
-    descripcionCortaProducto.innerHTML = '';
-    descripcionCortaProducto.innerHTML = descripcion_breve;
-
-    // load categoría
-    const categoriaProducto = document.getElementById('categoria-producto');
-    categoriaProducto.innerHTML = '';
-    categoriaProducto.innerHTML = producto.categoria;
-
-    // load nombre del producto (descripción larga)
-    const nombreProducto2 = document.getElementById('nombre-producto-2');
-    nombreProducto2.innerHTML = '';
-    nombreProducto2.innerHTML = producto.nombre;
-
-    // load descripción larga del producto
-    const descripcionLargaProducto = document.getElementById('descripcion-larga-producto');
-    descripcionLargaProducto.innerHTML = '';
-    descripcionLargaProducto.innerHTML = producto.descripcion_extendida;
-
+} else {
+    document.getElementById('nombre-producto').innerText = "Nombre de producto no encontrado";
+    document.getElementById('precio-producto').innerText = "Precio de producto no encontrado";
+    document.getElementById('descripcion-corta-producto').innerText = "";
+    document.getElementById('categoria-producto').innerText = "stock";
+    document.getElementById('categoria-nombre').innerText = "categoryName";
+    document.getElementById('descripcion-larga-producto').innerText = "descripcion_extendida";
+    document.getElementById('imagen-principal').innerText = "imagen_principal";
+    document.getElementById('imagen-secundaria-1').innerText = "imagen_secundaria_1";
+    document.getElementById('imagen-secundaria-2').innerText = "imagen_secundaria_2";
+    document.getElementById('imagen-secundaria-3').innerText = "imagen_secundaria_3";
+    document.getElementById('imagen-360').innerText = "imagen_360";
 }
-
-// configurar el boton para que guarde en el carrito el producto si se presiona en añadir
-function setButtonBehavior() {
-    document.getElementById('agregar-al-carrito').addEventListener('click', function (e) {
-        const producto = localStorage.getItem('detailsProduct');
-        const cantidadProducto = document.getElementById('cantidad-producto').value;
-        guardar_producto_en_carrito(producto.url, producto, cantidadProducto);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    // establecer algunos triggers (en este caso storageChange osea cuando el localstorage cambia)
-    set_trigger_para_modificacion_localstorage();
-
-    // actualizar el contador de prodcutos en el carrito en el header
-    actualizarContadorCantidadProducto();
-
-    // cargar todo el contenido del producto seleccionado para ver sus detalles
-    cargarContenidoDetallesProducto();
-
-    // establecer el comportamiento del boton agregar al carrito
-    setButtonBehavior();
-});
-
-
-/*
-{
-    "nombre": "",
-    "descripcion_breve": "",
-    "descripcion_extendida": "",
-    "precio": null,
-    "imagen_principal": null,
-    "imagen_secundaria_1": null,
-    "imagen_secundaria_2": null,
-    "imagen_secundaria_3": null,
-    "imagen_360": null,
-    "stock": null,
-    "categoria": null
-}
-*/

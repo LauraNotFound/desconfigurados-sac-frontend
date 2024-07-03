@@ -56,7 +56,7 @@
     border-radius: 5px;
 }
 
-.close {
+.close, .close-modal {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -64,8 +64,248 @@
 }
 
 .close:hover,
-.close:focus {
+.close-modal:hover,
+.close:focus,
+.close-modal:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* estilos para el registro */
+#register-modal-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 80%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px;
+    background: #fff; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    float: right;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.form-column {
+    flex: 1;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    width: auto; 
+    padding: 5px 10px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #dcb04ab2;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 auto; 
+    display: block; 
+}
+
+form input[type="submit"]:hover {
+    background-color: #c6963a;
+}
+
+#register-message {
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+/* estilos para el login */
+#login-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 80%; 
+    max-width: 600px; 
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button[type="submit"] {
+    width: auto; 
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dcb04ab2;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 auto; 
+    display: block; 
+}
+
+form button[type="submit"]:hover {
+    background-color: #c6963a;
+}
+
+#login-message {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* estilos de la vista detalle de usuario */
+
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.detail-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.detail-container h2 {
+    color: #dcb04ab2;
+    text-align: center;
+}
+
+.detail-container h3 {
+    color: #333333;
+    text-align: left;
+    margin: 20px 0;
+}
+
+.user-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.user-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #dcb04ab2;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.user-icon {
+    font-size: 100px;
+    color: #dcb04ab2;
+}
+
+.user-details p {
+    color: #333333;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.user-details i {
+    margin-right: 10px;
+    color: #dcb04ab2;
+}
+
+.detail-container button {
+    background-color: #dcb04ab2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.detail-container button:hover {
+    background-color: #b98d37;
 }

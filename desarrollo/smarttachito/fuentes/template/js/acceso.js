@@ -148,7 +148,7 @@ function setupRegisterForm() {
     registerForm.addEventListener('submit', async function (event) {
         event.preventDefault();
         const passwordValue = document.getElementById('password').value;
-
+        const registerMessage = document.getElementById('register-message');
         const data = {
             username: passwordValue, 
             email: document.getElementById('email').value,
@@ -179,7 +179,8 @@ function setupRegisterForm() {
                 return response.json();
             })
             .then(data => {
-                alert('Registro exitoso. Ahora puedes iniciar sesión.');
+                registerMessage.style.color = 'green';
+                registerMessage.textContent = 'Login exitoso';
                 window.location.href = '/index.html';
             })
             .catch(error => {
