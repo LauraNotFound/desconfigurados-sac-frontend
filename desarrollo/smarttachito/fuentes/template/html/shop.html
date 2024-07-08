@@ -25,7 +25,7 @@
   <!-- Custom stylesheet - for your changes-->
   <link rel="stylesheet" href="/css/custom.0a822280.css">
   <!-- Favicon-->
-  <link rel="shortcut icon" href="/images/logo.png">
+  <link rel="icon" href="/logo.ico">
   <!-- Librerías -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" rel="stylesheet">
 
@@ -107,26 +107,18 @@
       <section class="py-5">
         <div class="container p-0">
           <div class="row">
-            <!-- SHOP SIDEBAR-->
             <div class="col-lg-3 order-2 order-lg-1">
-
               <h6 class="text-uppercase mb-3">Categorías</h6>
-              <!-- FILTRO DE CATEGORÍAS -->
-              <div id="category-container" class="mb-3">
-                <!-- Aquí van las checkbox para el filtrado por categorías
-                 cuando no se selecciona una categoría o se marcan todas se muestran todos los productos -->
-              </div>
-
+              <div id="category-container" class="mb-3"></div>
               <h6 class="text-uppercase mb-3">Precios</h6>
               <div class="mb-3">
-                <input type="range" class="form-range" id="price-slider" min="0" max="300" step="10">
+                <input type="range" class="form-range" id="price-slider" min="0" max="300" step="5">
                 <div class="d-flex justify-content-between">
                   <span id="min-price">0</span>
                   <span id="max-price">300</span>
                 </div>
               </div>
             </div>
-            <!-- SHOP LISTING-->
             <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
               <div class="row mb-3 align-items-center">
                 <div class="col-lg-6 mb-2 mb-lg-0">
@@ -146,7 +138,6 @@
                   </ul>
                 </div>
               </div>
-              <!-- AQUÍ VAN LOS PRODUCTOS -->
               <div class="row">
                 <div id="product-container" class="product-container"></div>
               </div>
@@ -155,7 +146,6 @@
         </div>
       </section>
     </div>
-    <!-- NEWSLETTER-->
     <section class="py-5">
       <div class="container p-0">
         <div class="row gy-3">
@@ -208,12 +198,9 @@
         </div>
       </div>
     </footer>
-    <!-- JavaScript files-->
-    <script type="module" src="/js/shop.js"></script>
-    <script src="/js/productos.js" type="module"></script>
+    <script src="/js/productos.js"></script>
+    <!-- <script src="/js/cart.js"></script> -->
     <script src="/js/acceso.js"></script>
-    <script src="/js/controllers/carrito.js"></script>
-    <script src="/js/controllers/showDetails.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/glightbox.min.js"></script>
     <script src="/js/nouislider.min.js"></script>

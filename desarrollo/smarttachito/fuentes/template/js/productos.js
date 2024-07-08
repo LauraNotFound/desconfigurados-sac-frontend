@@ -9,6 +9,7 @@ let categories = new Set();
 let selectedCategories = new Set();
 let maxPrice = 300;
 let minPrice = 0;
+const carrito = [];
 
 const fetchProducts = async () => {
     try {
@@ -92,18 +93,59 @@ const createProductCard = (product) => {
                 </a>
                 <div class="product-overlay">
                     <ul class="mb-0 list-inline">
-                        <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Agregar al carrito</a></li>
+                        <li class="list-inline-item m-0 p-0"><button class="btn-mas btn-sm btn-dark" marcador="${nombre}">+</button></li>
+                        <li class="list-inline-item m-0 p-0"><button class="btn-agregar btn-sm btn-dark" marcador="${nombre}">Agregar al carrito</button></li>
+                        <li class="list-inline-item m-0 p-0"><button class="btn-menos btn-sm btn-dark" marcador="${nombre}">-</button></li>
                     </ul>
                 </div>
             </div>
             <h6><a class="reset-anchor" href="detail.html?nombre=${encodeURIComponent(nombre)}">${nombre}</a></h6>
-            <p class="small text-muted">${precio}</p>
+            <p class="small text-muted">S/${precio}</p>
         </div>
     `;
     productElement.innerHTML = productInnerHTML;
+
+    productElement.querySelector('.btn-mas').addEventListener('click', anyadirProductoAlCarrito);
+    productElement.querySelector('.btn-menos').addEventListener('click', quitarProductoAlCarrito);
+    productElement.querySelector('.btn-agregar').addEventListener('click', anyadirProductoAlCarrito);
+
     productContainer.appendChild(productElement);
 };
 
+const anyadirProductoAlCarrito = (evento) => {
+    const nombreProducto = evento.target.getAttribute('marcador');
+    carrito.push(nombreProducto);
+    console.log('Producto agregado al carrito:', nombreProducto);
+    console.log('Carrito:', carrito);
+};
+
+const quitarProductoAlCarrito = (evento) => {
+    const nombreProducto = evento.target.getAttribute('marcador');
+    const index = carrito.indexOf(nombreProducto);
+    if (index > -1) {
+        carrito.splice(index, 1);
+    }
+    console.log('Producto removido del carrito:', nombreProducto);
+    console.log('Carrito:', carrito);
+};
+
+const borrarItemCarrito = (evento) => {
+    const nombre = evento.target.dataset.item;
+    carrito = carrito.filter(carritoNombre => carritoNombre !== nombre);
+    renderizarCarrito();
+};
+
+const calcularTotal = () => {
+    return carrito.reduce((total, item) => {
+        const miItem = baseDeDatos.find(producto => producto.nombre === item);
+        return total + miItem.precio;
+    }, 0).toFixed(2);
+};
+
+const vaciarCarrito = () => {
+    carrito.length = 0;
+    renderizarCarrito();
+};
 
 const updateProductContainer = (filteredProducts) => {
     productContainer.innerHTML = '';
@@ -114,7 +156,6 @@ const updateProductContainer = (filteredProducts) => {
     }
 };
 
-// Ordenamiento de los productos según su precio o nombre
 const sortProducts = (sortType) => {
     let sortedProducts = [...allProducts];
     switch (sortType) {
